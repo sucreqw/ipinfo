@@ -18,9 +18,10 @@ public class Controller {
     @RequestMapping(value = "/submit", method= RequestMethod.POST)
     public String index(HttpServletRequest request){
         String nick=request.getParameter("nick");
+        nick=nick==null?"":nick;
         String ip=request.getRemoteAddr();
         System.out.println(nick +"|" + ip);
-        System.out.println(user.islogin());
+       // System.out.println(user.islogin());
         return "您好" +nick + ",您的ip地址是：" + ip ;
     }
 }
