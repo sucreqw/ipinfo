@@ -1,16 +1,15 @@
 package com.youmi.ipinfo;
 
 import com.youmi.service.UserDao;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
+@EnableWebSecurity
 @RestController
 public class Controller {
 
@@ -33,4 +32,10 @@ public class Controller {
         String code=request.getRequestURI();//request.getParameter("access_token");
         return "收到callback"+code ;
     }
+    @RequestMapping("/user")
+
+    public String getUsers() {
+        return "Hello Spring Security";
+    }
+
 }
