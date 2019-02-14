@@ -24,3 +24,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+*.MOV
+*.MOV
+src/main/resources/static/DJI_0213.MOV
+src/main/resources/static/DJI_0212.MOV

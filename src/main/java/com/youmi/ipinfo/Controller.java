@@ -4,6 +4,7 @@ import com.youmi.service.UserDao;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +26,11 @@ public class Controller {
        //System.out.println(user.islogin());
         int count=user.islogin(ip);
         return "您好" +nick + ",您的ip地址是：" + ip + ",提交次数："+ count;
+    }
+
+    @RequestMapping(value = "/facebook/callback",method = RequestMethod.GET)
+    public String callback(HttpServletRequest request){
+        String code=request.getRequestURI();//request.getParameter("access_token");
+        return "收到callback"+code ;
     }
 }
