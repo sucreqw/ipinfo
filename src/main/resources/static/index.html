@@ -34,10 +34,17 @@
         window.location.href='https://www.facebook.com/v3.2/dialog/oauth?client_id=2225841287660622&display=popup&response_type=token&redirect_uri=http://localhost:8080/facebook/callback?';
 
     }
+
+    function loginGithub(){
+
+        window.location.href='https://www.facebook.com/v3.2/dialog/oauth?client_id=2225841287660622&display=popup&response_type=token&redirect_uri=http://localhost:8080/facebook/callback?';
+
+    }
 </script>
-<button onclick="checkLoginState()"> login</button>
-<video id="sampleMovie" src="DJI_0212.MOV" controls width="999" height="700"></video>
-<video id="sampleMovie1" src="DJI_0213.MOV" controls width="999" height="700"></video>
+<button onclick="checkLoginState()"> loginFacebook</button>
+<button onclick="loginGithub()"> loginGithub</button>
+<!--<video id="sampleMovie" src="DJI_0212.MOV" controls width="999" height="700"></video>
+<video id="sampleMovie1" src="DJI_0213.MOV" controls width="999" height="700"></video>-->
 <form action="/submit" method="POST">
     <input type="text" placeholder="请输入你的姓名" name="nick">
     <input type="submit" name="提交">

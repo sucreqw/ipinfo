@@ -24,7 +24,7 @@ public class Controller {
         System.out.println(nick +"|" + ip);
        //System.out.println(user.islogin());
         int count=user.islogin(ip);
-        return "您好" +nick + ",您的ip地址是：" + ip + ",提交次数："+ count;
+        return "您好" + nick + ",您的ip地址是：" + ip + ",提交次数："+ count;
     }
 
     @RequestMapping(value = "/facebook/callback",method = RequestMethod.GET)
