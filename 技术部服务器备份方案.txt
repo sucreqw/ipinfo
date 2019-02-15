@@ -1,32 +1,34 @@
-¼¼Êõ²¿·þÎñÆ÷ÏµÍ³±¸·ÝÎÄµµ
+æŠ€æœ¯éƒ¨æœåŠ¡å™¨ç³»ç»Ÿå¤‡ä»½æ–‡æ¡£
 
-µÚÒ»ÖÖ·½°¸£º
-¶¨ÆÚÓÉÔËÎ¬ÈËÔ±ÔÚ·þÎñÆ÷±¾µØ´ò°üÏµÍ³ËùÓÐÎÄ¼þ£¬È»ºóÉÏ´«µ½¹«Ë¾µÄ¹²ÏíÅÌ£¨ÈºêÍ£º10.0.0.3/BACKUP)¡£
+ç¬¬ä¸€ç§æ–¹æ¡ˆï¼š
+å®šæœŸç”±è¿ç»´äººå‘˜åœ¨æœåŠ¡å™¨æœ¬åœ°æ‰“åŒ…ç³»ç»Ÿæ‰€æœ‰æ–‡ä»¶ï¼Œç„¶åŽä¸Šä¼ åˆ°å…¬å¸çš„å…±äº«ç›˜ï¼ˆç¾¤æ™–ï¼š10.0.0.3/BACKUP)ã€‚
 
-ÊµÏÖ·½·¨£º
-1£¬±¸·ÝÃüÁî£º£¨³ýÁË±¸·ÝÎÄ¼þ±¾Éí£¬proc, lost+found,mnt,sysÕâÐ©ÎÄ¼þ¼ÐÖ®Íâ£¬ËùÓÐÈËÎÄ¼þ¼ÐºÍÎÄ¼þ¶¼»á±»´ò°üµ½backup.tgz£©
+å®žçŽ°æ–¹æ³•ï¼š
+1ï¼Œå¤‡ä»½å‘½ä»¤ï¼šï¼ˆé™¤äº†å¤‡ä»½æ–‡ä»¶æœ¬èº«ï¼Œproc, lost+found,mnt,sysè¿™äº›æ–‡ä»¶å¤¹ä¹‹å¤–ï¼Œæ‰€æœ‰äººæ–‡ä»¶å¤¹å’Œæ–‡ä»¶éƒ½ä¼šè¢«æ‰“åŒ…åˆ°backup.tgzï¼‰
       tar cvpzf backup.tgz / --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys
 
-   »Ö¸´ÃüÁî£º£¨restoreconÃüÁîÒ»¶¨ÒªÖ´ÐÐ£¬·ñÔòÖØÆôÖ®ºó»áµÇÂ¼²»ÉÏ¡££©
+   æ¢å¤å‘½ä»¤ï¼šï¼ˆrestoreconå‘½ä»¤ä¸€å®šè¦æ‰§è¡Œï¼Œå¦åˆ™é‡å¯ä¹‹åŽä¼šç™»å½•ä¸ä¸Šã€‚ï¼‰
       tar xvpfz backup.tgz -C /
-      restorecon -Rv /             
+      restorecon -Rv /
 
-2£¬ÔÚÈºêÍÉÏ¿ªÆônfs·þÎñ£¬ ²¢ÉèÖÃÎÄ¼þ¼ÐnfsÈ¨ÏÞ£¬»¹ÐèÒªÖ¸¶¨·þÎñÆ÷ip»òÕßhostname
+2ï¼Œåœ¨ç¾¤æ™–ä¸Šå¼€å¯nfsæœåŠ¡ï¼Œ å¹¶è®¾ç½®æ–‡ä»¶å¤¹nfsæƒé™ï¼Œè¿˜éœ€è¦æŒ‡å®šæœåŠ¡å™¨ipæˆ–è€…hostname
 
 
-3£¬·þÎñÆ÷±ØÐë°²×°nfs×é¼þ²ÅÄÜÁ¬½ÓÉÏÈºêÍ£º
+3ï¼ŒæœåŠ¡å™¨å¿…é¡»å®‰è£…nfsç»„ä»¶æ‰èƒ½è¿žæŽ¥ä¸Šç¾¤æ™–ï¼š
       yum install nfs-utils
 
-  ¹ÒÔØÈºêÍµÄBACKUPÎÄ¼þ¼Ðµ½·þÎñÆ÷µÄhome/nasÏÂ£¨nasÄ¿Â¼ÒªÏÈÉú³É£¡£©£º
+  æŒ‚è½½ç¾¤æ™–çš„BACKUPæ–‡ä»¶å¤¹åˆ°æœåŠ¡å™¨çš„home/nasä¸‹ï¼ˆnasç›®å½•è¦å…ˆç”Ÿæˆï¼ï¼‰ï¼š
       mount -t nfs 10.0.0.3:/volume1/BACKUP /home/nas
-         Èç¹û¹ÒÔØ²»ÁË£¬Çë°²×°Ïà¹Ø·þÎñsamba(smb)Ê¹ÓÃÏÂÃæÃüÁî£º
-            yum0„2 install0„2 samba*0„20„20„20„2 (yumÅäÖÃ¿ÉÓÃ)
+         å¦‚æžœæŒ‚è½½ä¸äº†ï¼Œè¯·å®‰è£…ç›¸å…³æœåŠ¡samba(smb)ä½¿ç”¨ä¸‹é¢å‘½ä»¤ï¼š
+            yumÂ  installÂ  samba*Â Â Â Â  (yumé…ç½®å¯ç”¨)
 
-  °Ñbackup.tgz´«µ½ÈºêÍ
+  æŠŠbackup.tgzä¼ åˆ°ç¾¤æ™–
      mv backup.tgz /home/nas
-  
-  ÍÆ³ö¹ÒÔØ
-     unmount /home/nas 
 
-  
+  æŽ¨å‡ºæŒ‚è½½
+     unmount /home/nas
+
+
+
+
 

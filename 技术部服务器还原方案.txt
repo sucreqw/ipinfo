@@ -1,16 +1,16 @@
-��������������ԭ�ĵ�
+技术部服务器还原文档
 
-�˷��������ڣ�
-   1��Ӧ�Է���ϵͳ���ױ�������Ҫ�ָ���
-   2��������ϵͳ���ױ�������Ҫ����Ӳ�̵Ļָ���
+此方案适用于：
+   1，应对服务系统彻底崩溃，需要恢复。
+   2，服务器系统彻底崩溃后，需要更换硬盘的恢复。
 
-��ϸ˵����
-   1���Ȱ�װһ���������contos 7.5
-   2, �ڻָ�֮ǰ������ blkid ����鿴Ӳ�̵�uuid
-   3, Ȼ������ df -h  �������ص�boot��Ӳ��uuid����һ������������
-   4,��ʼ�ָ�
+详细说明：
+   1，先安装一个基础版的contos 7.5
+   2, 在恢复之前，运行 blkid 命令查看硬盘的uuid
+   3, 然后运行 df -h  看看挂载到boot的硬盘uuid是那一个，记下来。
+   4,开始恢复
         tar xvpfz backup.tgz -C /
-        restorecon -Rv /       
-   5,����/boot/grub2/grub.cfg �µ�uuid �ĳɸ��¼������Ǹ� һ���ĸ���
-   6,Ȼ�����������������ǽ�����ϵͳ�ģ������emergency mode
-   7,��emergency mode�£�vi /etc/fstab ��uuid.�ĳɸ��¼������Ǹ���������ok�ˡ�
+        restorecon -Rv /
+   5,更改/boot/grub2/grub.cfg 下的uuid 改成刚下记下来那个 一共四个。
+   6,然后重启，如无意外是进不了系统的，会进到emergency mode
+   7,在emergency mode下，vi /etc/fstab 把uuid.改成刚下记下来那个。重启就ok了。
