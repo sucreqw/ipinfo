@@ -1,0 +1,73 @@
+1. 安装配置Shadowsocks客户端
+1.1 安装Shadowsocks客户端
+      #安装epel扩展源 
+      #采用Python包管理工pip安装。
+
+      sudo yum -y install epel-release
+      sudo yum -y install python-pip
+
+      #安装Shadowsocks客户端
+      sudo pip install shadowsocks
+
+1.2 配置Shadowsocks客户端
+       新建配置文件
+       sudo mkdir /etc/shadowsocks
+       sudo vi /etc/shadowsocks/shadowsocks.json
+       添加配置信息
+         {
+          "server":"1.1.1.1",
+          "server_port":1035,
+          "local_address": "127.0.0.1",
+          "local_port":1080,
+          "password":"password",
+          "timeout":600,
+          "method":"aes-256-cfb",
+          "fast_open": false,
+          "workers": 1
+          }
+       参数说明： 
+           server：Shadowsocks服务器地址 
+           server_port：Shadowsocks服务器端口 
+           local_address：本地IP 
+           local_port：本地端口 
+           password：Shadowsocks连接密码 
+           timeout：等待超时时间 
+           method：加密方式 
+           workers:工作线程数 
+           fast_open：true或false。开启fast_open以降低延迟，但要求Linux内核在3.7+。开启方法 echo 3 > /proc/sys/net/ipv4/tcp_fastopen
+
+2 运行shadowsocks
+       2.1以上配置完成后运行shadowsocks服务端。
+             sslocal -c /etc/shadowsocks/shadowsocks.json &
+       
+       2.2运行后命令窗口必需开着，关掉就等于关闭了客户端。
+
+3 安装全局代理
+  3.1下载delegate压缩包。
+      http://delegate.hpcc.jp/anonftp/DeleGate/bin/linux/latest/linux2.6-dg9_9_13.tar.gz
+      或者使用：
+      wget http://delegate.hpcc.jp/anonftp/DeleGate/bin/linux/latest/linux2.6-dg9_9_13.tar.gz
+   
+   3.2解压到/usr/local目录下
+      tar -zxvf linux2.6-dg9_9_13.tar.gz -C /usr/local/
+   
+   3.3进入到解压目录linux2.6-dg9.9.13/DGROOT/bin/ ，执行以下命令
+      ./dg9.9.13 ADMIN="xxxx@xx.xx" -P8119 SERVER=http SOCKS=127.0.0.1:1080
+
+      dg9.9.13是包压缩时delegate名字，你可以随意修改名字，也可以链接到开机启动里。这里我就不作过多的记录了。
+      ADMIN 这个随便设置一个，不然他会提示你必须填一个。
+      -P 这个是设置本地HTTP代理的端口。我设置的是8119
+      SERVER 指定为http
+      SOCKS 为shdowsocks上设置的本地的地址和端口号。
+
+4为linux系统设置全局http/https代理
+    4.1运行命令      
+          vi /etc/profile
+    
+    4.2在配置文件加入
+          export http_proxy=http://127.0.0.1:1080 #这里的端口和上面 delegate 中的-P保持一致
+          export https_proxy=http://127.0.0.1:1080
+
+
+5关闭代理只要在配置文件加上注释，关闭上面打开的shadowsocks客户端命令行就可以了。
+

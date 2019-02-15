@@ -1,0 +1,18 @@
+技术部服务器文档
+地址：10.0.0.5
+内存：16G
+
+二级账号:youmi
+   密码:youmi1989
+
+二级账号:youmi_h5
+   密码:jsb1989
+
+二级账号:youmi_test
+   密码:jsb1989
+
+关于权限：
+一级账号拥有最高级权限,可对所有文件读写。
+二级账号对etc，media，tmp有读写权限(777)，对bin，boot，dev，lib，lib64，mnt，opt，proc,run,sbin,srv,sys,usr,var有只读权限(755),对root,home两个文件夹采用默认权限。
+
+

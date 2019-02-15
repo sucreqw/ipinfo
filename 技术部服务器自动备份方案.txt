@@ -1,0 +1,28 @@
+技术部服务器系统自动备份文档
+
+此方案基于系统备份方案1上面，在linux上设置定时任务，定期执行备份脚本（backup.sh)，并上传到公司共享盘（10.0.0.3\BACKUP）上
+默认脚本的位置放在根目录下，共享盘挂载在/home/nas目录下
+
+1:先给当前目录下的backup.sh文件的所有者增加可执行权限。
+  chmod u+x backup.sh 
+
+2:编辑定时任务工作表
+  crontab  -e
+3：编辑加入定时命令：每星期六的晚上11 : 00 pm 执行脚本
+  0 23 * * 6 /backup.sh
+
+
+
+下面是脚本命令详解：
+
+
+time=`date +%Y-%m-%d` //用日期做文件名
+filename=/$time.tgz  //用日期做文件名
+umount /home/nas     //为免冲突先推出共享盘挂载
+tar cvpzf $filename / --exclude=proc --exclude=/lost+found --exclude=$filename --exclude=/mnt --exclude=/sys //打包系统文件
+mount -t nfs 10.0.0.3:/volume1/BACKUP /home/nas //挂载共享盘10.0.0.3/BACKUP 到 /home/nas目录下
+mv $filename /home/nas //把备份文件上传到共享盘
+umount /home/nas //推出共享盘。
+
+  
+
