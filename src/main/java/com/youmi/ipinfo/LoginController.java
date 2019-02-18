@@ -2,17 +2,19 @@ package com.youmi.ipinfo;
 
 import com.youmi.service.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
 
-@RestController
-public class Controller {
+@Controller
+public class LoginController {
 
+    @Qualifier("userDao")
     @Autowired
     UserDao user;
 
@@ -28,14 +30,19 @@ public class Controller {
     }
 
     @RequestMapping(value = "/facebook/callback",method = RequestMethod.GET)
+    @ResponseBody
     public String callback(HttpServletRequest request){
         String code=request.getRequestURI();//request.getParameter("access_token");
         return "收到callback"+code ;
     }
     @RequestMapping("/user")
-
     public String getUsers() {
         return "Hello Spring Security";
+    }
+
+    @RequestMapping("/loginPage")
+    public String loginPage(){
+        return  "login";
     }
 
 }

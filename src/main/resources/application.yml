@@ -1,13 +1,18 @@
 server:
   port: 8080
+
 spring:
   mvc:
+    view:
+      prefix: /
+      suffix: .html
     favicon:
        enabled: false
+
 facebook:
   client:
-    clientId: 233668646673605
-    clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
+    clientId: 626761777726947
+    clientSecret: 44b8658749b319466482aa612a5a2de7
     accessTokenUri: https://graph.facebook.com/oauth/access_token
     userAuthorizationUri: https://www.facebook.com/dialog/oauth
     tokenName: oauth_token
