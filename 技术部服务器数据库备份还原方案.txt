@@ -27,3 +27,7 @@
 
 4, 还原命令：
     gunzip < test.tar.gz |mysql -hlocalhost -uroot -pxxxxx
+
+
+
+
