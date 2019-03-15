@@ -11,8 +11,8 @@
 
 2，备份脚本：(mysqlBackup.sh)
       time=`date +%Y-%m-%d`
-      mysqldump --single-transaction -hlocalhost  --all-databases --triggers --routines --events -P3306 -uroot -p'youmi...@1989$!' |gzip > /DBbackup/$time.tar.gz
-      #mysqldump -uroot -p'youmi...@1989$!' -A > /DBbackup/$time.sql
+      mysqldump --single-transaction -hlocalhost  --all-databases --triggers --routines --events -P3306 -uroot -p'password' |gzip > /DBbackup/$time.tar.gz
+      #mysqldump -uroot -p'password' -A > /DBbackup/$time.sql
 
 3，设置定时任务，每天0点自动备份：
        命令说明
