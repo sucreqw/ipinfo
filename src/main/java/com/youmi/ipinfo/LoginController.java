@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 
 @Controller
@@ -18,31 +19,34 @@ public class LoginController {
     @Autowired
     UserDao user;
 
-    @RequestMapping(value = "/submit", method= RequestMethod.POST)
-    public String index(HttpServletRequest request){
-        String nick=request.getParameter("nick");
-        nick=nick==null?"":nick;
-        String ip=request.getRemoteAddr();
-        System.out.println(nick +"|" + ip);
-       //System.out.println(user.islogin());
-        int count=user.islogin(ip);
-        return "您好" + nick + ",您的ip地址是：" + ip + ",提交次数："+ count;
+    @RequestMapping(value = "/submit", method = RequestMethod.POST)
+    public String index(HttpServletRequest request) {
+        String nick = request.getParameter("nick");
+        nick = nick == null ? "" : nick;
+        String ip = request.getRemoteAddr();
+        System.out.println(nick + "|" + ip);
+        //System.out.println(user.islogin());
+        int count = user.islogin(ip);
+        return "您好" + nick + ",您的ip地址是：" + ip + ",提交次数：" + count;
     }
 
-    @RequestMapping(value = "/facebook/callback",method = RequestMethod.GET)
+    @RequestMapping(value = "/facebook/callback", method = RequestMethod.GET)
     @ResponseBody
-    public String callback(HttpServletRequest request){
-        String code=request.getRequestURI();//request.getParameter("access_token");
-        return "收到callback"+code ;
-    }
-    @RequestMapping("/user")
-    public String getUsers() {
-        return "Hello Spring Security";
+    public String callback(HttpServletRequest request) {
+        String code = request.getRequestURI();//request.getParameter("access_token");
+        return "收到callback" + code;
     }
 
-    @RequestMapping("/loginPage")
-    public String loginPage(){
-        return  "login";
+    @RequestMapping("/user")
+    @ResponseBody
+    public Principal user(Principal principal) {
+
+        return principal;
+    }
+
+    @RequestMapping("/loginpage")
+    public String loginPage() {
+        return "login";
     }
 
 }

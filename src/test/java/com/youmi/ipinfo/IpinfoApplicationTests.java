@@ -16,9 +16,9 @@ public class IpinfoApplicationTests {
     public void contextLoads() {
 
         System.out.println("start");
-        Map<String,Integer> map;
-        map=new HashMap<>();
-        map.put("127.0.0.1",1);
+        Map<String, Integer> map;
+        map = new HashMap<>();
+        map.put("127.0.0.1", 1);
 
         System.out.println(map.get("127.0.0.1"));
     }

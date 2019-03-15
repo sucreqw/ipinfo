@@ -1,0 +1,29 @@
+10.0.0.6 mySQL备份方案
+
+因为备份脚本包含数据库密码，为了尽量安全一点把包含密码的备份脚本放到群晖上面，然后定时脚本挂载到服务器本地运行，运行完备份之后再自动推出，
+减少密码暴露的风险。
+
+1，定时脚本：(backupMysql.sh)
+      umount /home/nas
+      mount -t nfs 10.0.0.3:/volume1/BACKUP32 /home/nas
+      sh /home/nas/mysqlBackup.sh
+      umount /home/nas
+
+2，备份脚本：(mysqlBackup.sh)
+      time=`date +%Y-%m-%d`
+      mysqldump --single-transaction -hlocalhost  --all-databases --triggers --routines --events -P3306 -uroot -p'youmi...@1989$!' |gzip > /DBbackup/$time.tar.gz
+      #mysqldump -uroot -p'youmi...@1989$!' -A > /DBbackup/$time.sql
+
+3，设置定时任务，每天0点自动备份：
+       命令说明
+             crontab文件格式：
+             *           *        *        *        *           command
+             minute   hour    day   month   week      command
+             分          时         天      月        星期       命令
+      具体命令：（每天1点自动执行备份脚本，跟备份服务器的脚本错开时间。）
+      crontab  -e      (编辑工作表)
+      0 1 * * * /backupMysql.sh
+
+
+4, 还原命令：
+    gunzip < test.tar.gz |mysql -hlocalhost -uroot -pxxxxx

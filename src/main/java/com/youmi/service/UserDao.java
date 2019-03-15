@@ -11,20 +11,20 @@ import java.util.Map;
 @Service
 public class UserDao {
 
-    private Map<String,Integer> map;
+    private Map<String, Integer> map;
 
     public UserDao() {
-        map=new HashMap<>();
+        map = new HashMap<>();
     }
 
-    public int islogin(String ip){
+    public int islogin(String ip) {
         Integer i;
-        i= map.get(ip);
-        if(i !=null) {
+        i = map.get(ip);
+        if (i != null) {
 
             i++;
-        }else{
-            i=1;
+        } else {
+            i = 1;
 
         }
         map.put(ip, i);
@@ -32,8 +32,8 @@ public class UserDao {
         return i.intValue();
     }
 
-    public UserDetails loadUserByUsername(String name){
-        UserDetails user=new UserDetails() {
+    public UserDetails loadUserByUsername(String name) {
+        UserDetails user = new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 return null;

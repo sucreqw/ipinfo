@@ -1,32 +1,32 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>Demo</title>
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Demo</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
 </head>
 <body>
-    <h1>Login</h1>
+<h1>Login</h1>
+<div>
     <div>
-        <div>
-            With Facebook: <a href="/login/facebook">click here</a>
-        </div>
-        <div>
-            With Google: <a href="/login/google">click here</a>
-        </div>
-        <form action="/userLogin" method="POST">
-            username：<input name="username" type="text"/>
-            password：<input name="password" type="password"/>
-            <input type="submit" value="提交"/>
-        </form>
+        With Facebook: <a href="/login/facebook">click here</a>
     </div>
     <div>
-        Logged in as:
-        <div>
-            <a href="/userLogout">Logout</a>
-        </div>
+        With Google: <a href="/login/google">click here</a>
     </div>
+    <form action="/userLogin" method="POST">
+        username：<input name="username" type="text"/>
+        password：<input name="password" type="password"/>
+        <input type="submit" value="提交"/>
+    </form>
+</div>
+<div>
+    Logged in as:
+    <div>
+        <a href="/userLogout">Logout</a>
+    </div>
+</div>
 </body>
 </html>
